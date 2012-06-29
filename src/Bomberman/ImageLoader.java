@@ -12,12 +12,17 @@ public class ImageLoader {
 	static private ImageIcon floorTile = new ImageIcon ("images/tiles/floor.png");
 	static private ImageIcon blockTile = new ImageIcon ("images/tiles/block.png");
 	static private ImageIcon goalTile = new ImageIcon ("images/tiles/goal.png");
-	
+	//neues bild
+	static private ImageIcon stoneTile = new ImageIcon ("images/tiles/stone.png");
+
 	
 	public static ImageIcon getTileImage(char type){
 		switch(type){
 			case 'X' : return blockTile;
 			case 'G' : return goalTile;
+			//neue cases
+			case 'Y' : return stoneTile;
+			case 'S' : return stoneTile;
 			default: return floorTile;
 		}
 	}

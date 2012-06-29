@@ -9,14 +9,25 @@ public class Tile {
 	
 	Tile(char type){
 		switch(type){
+		// X = unzerstörbare Mauer
 		case 'X' :	setBlocked(true);
 					setImage(ImageLoader.getTileImage(type));
 					break;
-					
+		// G = sichtbare Tür			
 		case 'G' :	setBlocked(false);
 					setImage(ImageLoader.getTileImage(type));
 					break;
 					
+		// Y = lockerer Stein		
+		case 'Y' :	setBlocked(true);
+					setImage(ImageLoader.getTileImage(type));
+					break;
+		
+		// S = versteckte Tür hinter lockerem Stein
+		case 'S' :	setBlocked(true);
+					setImage(ImageLoader.getTileImage(type));
+					break;
+		// Boden
 		default:	setBlocked(false);
 					setImage(ImageLoader.getTileImage(type));
 					break;
