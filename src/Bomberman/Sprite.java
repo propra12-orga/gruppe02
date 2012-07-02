@@ -1,5 +1,7 @@
 package Bomberman;
 
+import java.util.Iterator;
+
 import javax.swing.ImageIcon;
 
 public abstract class Sprite {
@@ -35,6 +37,15 @@ public abstract class Sprite {
 	public int get_posY(){
 		return posY;
 	}
+	
+	public void destroy(){
+		map.sprites.remove(this);
+	}
+	
+	//TODO getTilePosX, getTilePosY
+	//abstract public void getTilePosX();
+	
+	//abstract public void getTilePosY();
 	
 	abstract public void update();
 

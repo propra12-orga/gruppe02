@@ -1,9 +1,13 @@
 package Bomberman;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Bomb extends Sprite {
 	private int fc=0;
 	private int maxticks=3;
 	private int tick=0;
+	private int radius=1;
 
 	Bomb(TileMap map, int tile_posX, int tile_posY) {
 		super(map, tile_posX, tile_posY);
@@ -26,9 +30,25 @@ public class Bomb extends Sprite {
 				fc=0;
 			}
 		//destroy
-			if (tick == maxticks) map.player1_bomb = null;
-					
+			if (tick == maxticks){
+				detonate();
+				destroy();			
+			}
+	}
+
 	
+	public void detonate(){
+		/*
+		Sprite sprite;
+		ArrayList<Sprite> sprites;
+		sprites = map.spritearray[posX/16][posY/16];
+		Iterator<Sprite> itr = sprites.iterator();
+		
+		int i;
+		for(i=0; i<radius; i++){
+			
+		}
+		*/
 	}
 	
 }

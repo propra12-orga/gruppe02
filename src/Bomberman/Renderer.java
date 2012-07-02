@@ -35,17 +35,25 @@ public class Renderer {
 	
 	
 	public BufferedImage renderFrame(TileMap map){
-		Sprite sprite;
+		//Sprite sprite;
 		frame = deepCopy(mapImage);
 		Graphics2D g2 = frame.createGraphics();
 		//render bomb
+		/*
 		if (map.player1_bomb != null) {
 			g2.drawImage(map.player1_bomb.getImage().getImage(), map.player1_bomb.get_posX(), map.player1_bomb.get_posY(), null);
 		}
+		*/
+		
 		//render sprites
+		/*
 		Enumeration<Sprite> sprites = map.sprites.elements();
 		while( sprites.hasMoreElements() ){
 			sprite = sprites.nextElement();
+			g2.drawImage(sprite.getImage().getImage(), sprite.get_posX(), sprite.get_posY(), null);
+		}
+		*/
+		for(Sprite sprite : map.sprites){
 			g2.drawImage(sprite.getImage().getImage(), sprite.get_posX(), sprite.get_posY(), null);
 		}
 		

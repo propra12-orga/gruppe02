@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedInputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class TileMap {
@@ -14,7 +16,13 @@ public class TileMap {
 	public int mapWidth = 13;
 	
 	public Tile[][] tiles = new Tile[mapHeight][mapWidth];
-	Vector<Sprite> sprites = new Vector<Sprite>();
+	
+	//tracks sprite positions. trades memory in favor of performance if finding an object by its position is necessary
+	@SuppressWarnings("unchecked")
+	public ArrayList[][] spritearray = new ArrayList[mapHeight][mapWidth];
+	
+	//TODO replace with ArrayList
+	ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 	
 
 	public Bomb player1_bomb;
@@ -58,7 +66,8 @@ public class TileMap {
 	}
 	
 	public void spawnBomb(int posX, int posY){
-		player1_bomb = new Bomb(this, posX, posY);
+		//player1_bomb = new Bomb(this, posX, posY);
+		sprites.add(new Bomb(this, posX, posY));
 		
 	}
 	
@@ -88,7 +97,7 @@ public class TileMap {
 		return (y/16);
 	}
 		
-	
+	/*
 	public void updateSprites(){
 		Sprite sprite;
 		Enumeration<Sprite> sprites = this.sprites.elements();
@@ -102,21 +111,20 @@ public class TileMap {
 			player1_bomb.update();
 		}
 	}
-	
-	//debug
-	public void printSpritePositions(){
-		Sprite sprite;
-		Enumeration<Sprite> sprites = this.sprites.elements();
-		while( sprites.hasMoreElements() ){
-			sprite = sprites.nextElement();
-			System.out.println(sprite.toString() + " " + sprite.posX + " " + sprite.posY);
+	*/
+	public void updateSprites(){
+		ArrayList<Sprite> spritescopy = new ArrayList<Sprite>(sprites);
+		for(Sprite sprite : spritescopy){
+			sprite.update();
 		}
-	}
-	
-	public void printTileStatus(){
-		for (int i = 0; i < mapHeight; i++){
-			System.out.println(tiles[0][i].isBlocked());	
+
+		/*
+		Iterator<Sprite> iterator = sprites.iterator();
+		while(iterator.hasNext() ){
+			iterator.next().update();
 		}
+		*/
+		
 	}
 
 
